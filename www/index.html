@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>DICOM Cleaner</title>
+		<!--css inclusion-->
+		<link href="base.css" rel="stylesheet" type="text/css" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
+		<!--javascript inclusion-->
+		<!--ui tools that enhance DOM classes-->
+		<script type="text/javascript" src="tools/dom_extension.js"></script>
+		<!--application-->
+		<script type="module" src="app.js"></script>
+	</head>
+	<body>
+		<div id="error" class="alert"></div>
+		<div id="loading" class="alert"></div>
+		<div id="instructions">
+			<h2>Drag and drop a DICOM file or type the URL of a DICOM file.</h2>
+			<form id="file">
+				<p>
+					<label>URL<input  name="url" type="url" required="required" /></label>
+					<button>Submit</button>
+				</p>
+			</form>
+		</div>
+		<content>
+			<h2>
+				File <span id="filename"></span>
+				<button id="clear_all">Clear all sensitive tags</button>
+				<button id="download">Download</button>
+			</h2>
+			<table id="tags">
+				<thead>
+					<th style="max-width: 20rem;">ID</th>
+					<th>Name</th>
+					<th>RAW value</th>
+					<th>Value</th>
+					<th style="max-width: 3rem;">Type</th>
+					<th style="max-width: 5rem;">Length</th>
+					<th style="max-width: 5rem;">Action</th>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</content>
+	</body>
+</html>

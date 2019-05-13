@@ -1,0 +1,36 @@
+{
+	"name": "dicom-cleaner",
+	"description": "DICOM cleaner helps you to remove sensitive information from your DICOM file",
+	"version": "0.0.1",
+	"keywords": [
+		"dicom",
+		"cleaner",
+		"anonymize"
+	],
+	"homepage": "https://www.matco.name/projects#dicom",
+	"author": {
+		"name": "Matthieu Corageoud",
+		"email": "matthieu.corageoud@gmail.com"
+	},
+	"license": "Unlicense",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/matco/dicom.git"
+	},
+	"bugs": {
+		"url": "https://github.com/matco/dicom/issues"
+	},
+	"scripts": {
+		"start": "node server.js",
+		"lint": "eslint .",
+		"test": "mocha --require esm"
+	},
+	"dependencies": {
+		"node-static": "0.7.11"
+	},
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"esm": "^3.2.22",
+		"mocha": "^6.1.4"
+	}
+}

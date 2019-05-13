@@ -1,0 +1,32 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true
+	},
+	"globals": {
+		"assert": true
+	},
+	"extends": "eslint:recommended",
+	"parserOptions": {
+		"ecmaVersion": 2017,
+		"sourceType": "module"
+	},
+	"rules": {
+		"no-console": "off",
+		"no-new-wrappers": "error",
+		"no-proto": "error",
+		"no-with": "error",
+		"no-undef": "error",
+		"no-multi-spaces": "error",
+		"no-var": "error",
+		"array-callback-return": "error",
+		"consistent-return": "error",
+		"prefer-const": "error",
+		"curly": "error",
+		"eqeqeq": "error",
+		"quotes": ["error", "single"],
+		"semi": ["error", "always"],
+		"indent": ["error", "tab", {"SwitchCase": 1}]
+	}
+}

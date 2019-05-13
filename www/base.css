@@ -1,0 +1,82 @@
+:root {
+	--main-font-family: 'Open Sans';
+	--main-text-color: black;
+}
+
+html {
+	height: 100%;
+	font-family: var(--main-font-family);
+	font-size: 80%; /*let users choose their own font size, but decrease this size a little bit as most browsers have default font size set to 16px*/
+}
+body {
+	color: var(--main-text-color);
+	background-color: white;
+	height: 100%;
+	margin: 0;
+	padding: 1rem;
+	box-sizing: border-box;
+}
+body.dragover {
+	opacity: 0.6;
+	background-color: #ccc;
+}
+content {
+	display: none;
+}
+input {
+	width: 25rem;
+	margin-left: 2rem;
+	border: 1px solid #ccc;
+	border-radius: 0.25rem;
+	font-family: var(--main-font-family);
+}
+button {
+	border: 1px solid #ccc;
+	border-radius: 0.25rem;
+	font-family: var(--main-font-family);
+}
+button:not([disabled]):hover {
+	background-color: #aaa;
+}
+table, tr, th, td {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+tr:nth-child(odd) {
+	background-color: #eee;
+}
+tr:hover {
+	background-color: #ccc;
+}
+th, td {
+	padding: 0.25rem;
+}
+td.cleared {
+	filter: blur(4px);
+}
+
+#tags {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.alert {
+	position: fixed;
+	top: 2rem;
+	right: 2rem;
+	padding: 1rem;
+	border-radius: 0.25rem;
+}
+.alert:empty {
+	display: none;
+}
+#loading {
+	background-color: #cce5ff;
+	color: #004085;
+	border: 1px solid #b8daff;
+}
+#error {
+	background-color: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
