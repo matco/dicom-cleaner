@@ -19,26 +19,26 @@ function clean_tag(tag_id) {
 }
 
 function clean_listener() {
-	clean_tag(this.parentNode.parentNode.id);
+	clean_tag(this.parentNode.parentNode.parentNode.id);
 }
 
 function draw_tag(tag) {
-	const tag_line = document.createFullElement('tr', {id : tag.id});
-	tag_line.appendChild(document.createFullElement('td', {}, tag.id));
+	const instance = document.importNode(document.getElementById('tag').content, true);
+	const tag_line = instance.querySelector('tr');
+	tag_line.setAttribute('id', tag.id);
+	instance.querySelector('slot[name="id"]').textContent = tag.id;
 	const tag_definition = Dictionaries.Tags.find(t => t.id === tag.id);
-	tag_line.appendChild(document.createFullElement('td', {}, tag_definition.name));
-	tag_line.appendChild(document.createFullElement('td', {'data-value' : 'true'}, tag.rawvalue));
-	tag_line.appendChild(document.createFullElement('td', {'data-value' : 'true'}, tag.value));
-	tag_line.appendChild(document.createFullElement('td', {}, tag.type));
-	tag_line.appendChild(document.createFullElement('td', {}, tag.data.length));
-	const button_cell = document.createElement('td');
-	tag_line.appendChild(button_cell);
+	instance.querySelector('slot[name="name"]').textContent = tag_definition.name;
+	instance.querySelector('slot[name="raw-value"]').textContent = tag.rawvalue;
+	instance.querySelector('slot[name="value"]').textContent = tag.value;
+	instance.querySelector('slot[name="type"]').textContent = tag.type;
+	instance.querySelector('slot[name="length"]').textContent = tag.data.length;
 	if(tag_definition.sensitive) {
 		const clean_button = document.createFullElement('button', {}, 'Clear');
 		clean_button.addEventListener('click', clean_listener);
-		button_cell.appendChild(clean_button);
+		instance.querySelector('slot[name="action"]').appendChild(clean_button);
 	}
-	return tag_line;
+	return instance;
 }
 
 function start_loading(message) {
@@ -105,7 +105,7 @@ function init() {
 					}
 					else if(data.tag) {
 						const tag = message.data.tag;
-						document.querySelector('#tags tbody').appendChild(draw_tag(tag));
+						document.querySelector('#tags').appendChild(draw_tag(tag));
 					}
 					break;
 				}
@@ -120,7 +120,7 @@ function init() {
 		//save dicom as current dicom
 		current_filename = filename;
 
-		document.querySelector('#tags tbody').clear();
+		document.querySelector('#tags').clear('tr');
 		analyser.postMessage({action : 'analyse', dicom : dicom}, [dicom]);
 
 		document.getElementById('download').setAttribute('title', 'Clean a tag to download an updated version of the DICOM file');

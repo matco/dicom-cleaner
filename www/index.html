@@ -40,7 +40,17 @@
 					<th style="max-width: 5rem;">Length</th>
 					<th style="max-width: 5rem;">Action</th>
 				</thead>
-				<tbody></tbody>
+				<template id="tag">
+					<tr>
+						<td><slot name="id"></slot></td>
+						<td><slot name="name"></slot></td>
+						<td data-value="true"><slot name="raw-value"></slot></td>
+						<td data-value="true"><slot name="value"></slot></td>
+						<td><slot name="type"></slot></td>
+						<td><slot name="length"></slot></td>
+						<td><slot name="action"></slot></td>
+					</tr>
+				</template>
 			</table>
 		</content>
 	</body>
