@@ -76,7 +76,6 @@ function init() {
 				case 'clean': {
 					if(data.end) {
 						const blob = new Blob([new Uint8Array(data.result)]);
-						console.log(current_filename);
 						const file = new File([blob], current_filename, {type: DICOM_MIME_TYPE, lastModified: Date.now()});
 						const url = window.URL.createObjectURL(file);
 						//Chrome does not support to set location href
@@ -203,7 +202,7 @@ function init() {
 							console.log(`Read file ${filename}`);
 							document.getElementById('filename').textContent = filename;
 							const buffer = reader_event.target.result;
-							read_dicom(buffer);
+							read_dicom(buffer, filename);
 						}
 					);
 					reader.readAsArrayBuffer(file);
