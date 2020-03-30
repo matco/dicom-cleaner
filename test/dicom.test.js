@@ -1,14 +1,17 @@
 /* global describe, it */
 
-const assert = require('assert');
-const fs = require('fs');
-const path = require('path');
+import assert from 'assert';
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
 
 import DICOM from '../www/dicom.js';
 import Dictionaries from '../www/dictionaries.js';
 
+const module_url = new URL(import.meta.url);
+
 function read_test_file(filename) {
-	const filepath = path.join(__dirname, 'resources', filename);
+	const filepath = path.resolve(path.dirname(url.fileURLToPath(module_url)), 'resources', filename);
 	return fs.readFileSync(filepath).buffer;
 }
 
@@ -28,7 +31,7 @@ describe('DICOM', function() {
 		it('should be valid when "DCM" is present at offset 128', function() {
 			const buffer = new ArrayBuffer(150);
 			assert.ok(!DICOM.IsValid(buffer));
-			//add DICM marker in buffer
+			//add DICOM marker in buffer
 			const marker = 'DICM';
 			const marker_offset = 128;
 			const data = new Uint8Array(buffer);

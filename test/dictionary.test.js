@@ -1,6 +1,6 @@
 /* global describe, it */
 
-const assert = require('assert');
+import assert from 'assert';
 
 import Dictionaries from '../www/dictionaries.js';
 

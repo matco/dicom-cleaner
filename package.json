@@ -23,14 +23,14 @@
 	"scripts": {
 		"start": "node server.js",
 		"lint": "eslint .",
-		"test": "mocha --require esm"
+		"test": "mocha"
 	},
+	"type": "module",
 	"dependencies": {
 		"node-static": "0.7.11"
 	},
 	"devDependencies": {
 		"eslint": "^6.5.1",
-		"esm": "^3.2.25",
-		"mocha": "^6.2.1"
+		"mocha": "^7.1.1"
 	}
 }
