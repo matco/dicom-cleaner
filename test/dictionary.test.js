@@ -1,4 +1,4 @@
-/* global describe, it */
+/*eslint-env node, mocha*/
 
 import assert from 'assert';
 

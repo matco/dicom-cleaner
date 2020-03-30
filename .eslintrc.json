@@ -1,15 +1,12 @@
 {
 	"env": {
 		"browser": true,
-		"es6": true,
+		"es2020": true,
 		"node": true
-	},
-	"globals": {
-		"assert": true
 	},
 	"extends": "eslint:recommended",
 	"parserOptions": {
-		"ecmaVersion": 2017,
+		"ecmaVersion": 2020,
 		"sourceType": "module"
 	},
 	"rules": {
@@ -20,6 +17,7 @@
 		"no-undef": "error",
 		"no-multi-spaces": "error",
 		"no-var": "error",
+		"no-prototype-builtins": "off",
 		"array-callback-return": "error",
 		"consistent-return": "error",
 		"prefer-const": "error",
@@ -28,5 +26,7 @@
 		"quotes": ["error", "single"],
 		"semi": ["error", "always"],
 		"indent": ["error", "tab", {"SwitchCase": 1}]
-	}
+	},
+	//disable ESLint in tests because "import.meta" is not supported by ESLint yet
+	"ignorePatterns": ["dicom.test.js"]
 }

@@ -225,6 +225,7 @@ function init() {
 		}
 	);
 
+	// eslint-disable-next-line no-unused-vars
 	function test() {
 		const form = document.getElementById('file');
 		const location = window.location;
