@@ -5,8 +5,8 @@ import fs from 'fs';
 import path from 'path';
 import url from 'url';
 
-import DICOM from '../www/dicom.js';
-import Dictionaries from '../www/dictionaries.js';
+import DICOM from '../src/dicom.js';
+import Dictionaries from '../src/dictionaries.js';
 
 const module_url = new URL(import.meta.url);
 

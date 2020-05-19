@@ -1,4 +1,5 @@
-import Dictionaries from '../dictionaries.js';
+import Dictionaries from '../src/dictionaries.js';
+import Analyser from '../src/workers/analyser.js';
 
 const DICOM_MIME_TYPE = 'application/dicom';
 
@@ -64,7 +65,7 @@ function error_loading() {
 
 function init() {
 	//build analyser worker
-	const analyser = new Worker('workers/analyser.js', {type : 'module'});
+	const analyser = new Analyser({type : 'module'});
 	analyser.addEventListener('message', function(message) {
 		const data = message.data;
 		console.info('Receiving message from analyser', data);
