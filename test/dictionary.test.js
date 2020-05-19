@@ -2,7 +2,7 @@
 
 import assert from 'assert';
 
-import Dictionaries from '../www/dictionaries.js';
+import Dictionaries from '../src/dictionaries.js';
 
 function build_buffer_form_bytes(bytes) {
 	return new Uint8Array(bytes.map(h => parseInt(h, 16))).buffer;
@@ -60,5 +60,3 @@ describe('TagTypes', function() {
 		});
 	});
 });
-
-
