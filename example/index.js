@@ -63,6 +63,7 @@ function progress_loading(event) {
 }
 
 function error_loading() {
+	stop_loading();
 	document.getElementById('error').textContent = 'Error while loading file';
 }
 
@@ -73,6 +74,7 @@ function init() {
 		const data = message.data;
 		console.info('Receiving message from analyser', data);
 		if(data.error) {
+			stop_loading();
 			document.getElementById('error').textContent = data.error;
 		}
 		else {
@@ -134,6 +136,7 @@ function init() {
 	document.getElementById('file').addEventListener(
 		'submit',
 		function(event) {
+			document.getElementById('error').textContent = '';
 			event.stopPropagation();
 			event.preventDefault();
 			const url = new URL(this['url'].value);
@@ -146,10 +149,16 @@ function init() {
 			xhr.addEventListener(
 				'load',
 				function() {
-					const filename = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
-					console.log(`Read file ${filename}`);
-					document.getElementById('filename').textContent = filename;
-					read_dicom(xhr.response, filename);
+					if(xhr.status === 200) {
+						const filename = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
+						console.log(`Read file ${filename}`);
+						document.getElementById('filename').textContent = filename;
+						read_dicom(xhr.response, filename);
+					}
+					else {
+						stop_loading();
+						document.getElementById('error').textContent = 'Unable to fetch file';
+					}
 				}
 			);
 			xhr.open('GET', url.href, true);
