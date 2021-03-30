@@ -86,7 +86,7 @@ function init() {
 						if(/Chrome/.test(navigator.userAgent)) {
 							const link = document.createFullElement('a', {href: url, download: current_filename});
 							const event = document.createEvent('MouseEvents');
-							event.initUIEvent('click', true, true, window, 1);
+							event.initEvent('click', true, true);
 							link.dispatchEvent(event);
 						}
 						else {
@@ -101,7 +101,7 @@ function init() {
 				}
 				case 'analyse': {
 					if(message.data.begin) {
-						start_loading('Analysing file');
+						start_loading('Analyzing file');
 					}
 					else if(message.data.end) {
 						stop_loading();
@@ -145,11 +145,11 @@ function init() {
 			xhr.addEventListener('error', error_loading);
 			xhr.addEventListener(
 				'load',
-				function(xhr_event) {
+				function() {
 					const filename = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
 					console.log(`Read file ${filename}`);
 					document.getElementById('filename').textContent = filename;
-					read_dicom(xhr_event.target.response, filename);
+					read_dicom(xhr.response, filename);
 				}
 			);
 			xhr.open('GET', url.href, true);

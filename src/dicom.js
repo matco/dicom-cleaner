@@ -97,7 +97,7 @@ export default {
 			if(!tag_type_definition) {
 				console.error(`Unknown tag type ${tag.type}`);
 			}
-			//check tag type against tage definition
+			//check tag type against tag definition
 			if(tag_definition && !tag_definition.type.includes(tag.type)) {
 				console.error(`Inconsistent tag type: expected ${tag_definition.type.join(',')}, actual ${tag.type}`);
 			}

@@ -90,7 +90,7 @@ const Dictionaries = {
 				const day = parseInt(value.substring(6, 8));
 				return new Date(Date.UTC(year, month - 1, day));
 			},
-			clean : function(buffer, offset, dataoffset, datalength) {
+			clean : function(buffer, _, dataoffset, datalength) {
 				if(datalength > 0) {
 					const now = new Date();
 					const date = `${now.getUTCFullYear()}${(now.getUTCMonth() + 1).toString().padStart(2, '0')}${now.getUTCDate().toString().padStart(2, '0')}`;
