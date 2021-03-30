@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const http = require('http');
-const node_static = require('node-static');
+import fs from 'fs';
+import path from 'path';
+import http from 'http';
+import node_static from 'node-static';
 
 const PORT = process.env.PORT || 1338;
 
