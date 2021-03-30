@@ -27,6 +27,9 @@
 		"test": "mocha"
 	},
 	"type": "module",
+	"dependencies": {
+		"js-tools": "git+ssh://git@github.com:matco/js-tools.git"
+	},
 	"devDependencies": {
 		"copy-webpack-plugin": "^8.1.0",
 		"css-loader": "^5.2.0",

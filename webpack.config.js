@@ -10,8 +10,7 @@ export default {
 	context: path.resolve(__dirname, 'example'),
 	entry: [
 		'./index.js',
-		'./index.css',
-		'./tools/dom_extension.js',
+		'./index.css'
 	],
 	output: {
 		path: path.resolve(__dirname, 'example', 'dist'),

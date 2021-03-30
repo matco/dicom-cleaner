@@ -1,3 +1,6 @@
+import 'js-tools/extension.js';
+import 'js-tools/dom_extension.js';
+
 import Dictionaries from '../src/dictionaries.js';
 import Analyser from '../src/workers/analyser.js';
 
@@ -120,7 +123,7 @@ function init() {
 		//save dicom as current dicom
 		current_filename = filename;
 
-		document.querySelector('#tags').clear('tr');
+		document.querySelector('#tags').empty('tr');
 		analyser.postMessage({action : 'analyse', dicom : dicom}, [dicom]);
 
 		document.getElementById('download').setAttribute('title', 'Clean a tag to download an updated version of the DICOM file');
