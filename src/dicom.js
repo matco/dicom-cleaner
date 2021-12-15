@@ -2,9 +2,9 @@ import Dictionaries from './dictionaries.js';
 
 //parse dataset
 const DataElements = {
-	Item : Dictionaries.Helpers.TagToIntegerArray('(FFFE,E000)'),
-	DelimitationItem : Dictionaries.Helpers.TagToIntegerArray('(FFFE,E00D)'),
-	SequenceDelimitationItem : Dictionaries.Helpers.TagToIntegerArray('(FFFE,E0DD)')
+	Item: Dictionaries.Helpers.TagToIntegerArray('(FFFE,E000)'),
+	DelimitationItem: Dictionaries.Helpers.TagToIntegerArray('(FFFE,E00D)'),
+	SequenceDelimitationItem: Dictionaries.Helpers.TagToIntegerArray('(FFFE,E0DD)')
 };
 
 function array_equals(array_1, array_2) {
@@ -37,7 +37,7 @@ function retrieve_items(buffer, start, stop) {
 		values_window.push(current_value);
 		if(array_equals(values_window, DataElements.Item)) {
 			//add ending item
-			const item = {start : last_bookmark, stop : i - 3};
+			const item = {start: last_bookmark, stop: i - 3};
 			//separator can be found at the beginning of the buffer
 			if(item.stop - item.start > 0) {
 				console.log(`Found item from ${offsetize(item.start)} to ${offsetize(item.stop)}`);
@@ -51,12 +51,12 @@ function retrieve_items(buffer, start, stop) {
 
 //parse data view to find tag values
 export default {
-	IsValid : function(dicom) {
+	IsValid: function(dicom) {
 		//check prefix
 		const prefix = String.fromCodePoint(...new Uint8Array(dicom, 128, 4));
 		return prefix === 'DICM';
 	},
-	CleanTags : function(dicom, current_tags, tags) {
+	CleanTags: function(dicom, current_tags, tags) {
 		const buffer = dicom.slice();
 		//remove tags to clear from current dicom
 		tags.forEach(function(tag_id) {
@@ -69,7 +69,7 @@ export default {
 		});
 		return buffer;
 	},
-	ParseTags : function(dicom, ontag, options) {
+	ParseTags: function(dicom, ontag, options) {
 		console.log(`Looking for tags in ${dicom.byteLength} bytes`);
 		const dataview = new DataView(dicom);
 		const tags = [];
@@ -78,8 +78,8 @@ export default {
 		while(offset < dicom.byteLength) {
 			//build tag object
 			const tag = {
-				offset : offset,
-				data : {}
+				offset: offset,
+				data: {}
 			};
 			//take first pack of 4 bytes
 			const id = [dataview.getUint8(offset), dataview.getUint8(offset + 1), dataview.getUint8(offset + 2), dataview.getUint8(offset + 3)];

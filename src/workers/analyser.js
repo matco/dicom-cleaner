@@ -2,8 +2,8 @@ import Dictionaries from '../dictionaries.js';
 import DICOM from '../dicom.js';
 
 const Actions = {
-	Analyse : 'analyse',
-	Clean : 'clean'
+	Analyse: 'analyse',
+	Clean: 'clean'
 };
 
 let current_dicom;
@@ -26,7 +26,7 @@ self.addEventListener('message', function(message) {
 					clean(current_dicom, tags);
 				}
 				else {
-					self.postMessage({error : 'Load a DICOM file first'});
+					self.postMessage({error: 'Load a DICOM file first'});
 				}
 				break;
 			}
@@ -35,10 +35,10 @@ self.addEventListener('message', function(message) {
 });
 
 function analyse(dicom) {
-	self.postMessage({action : Actions.Analyse, begin : true, message : 'Beginning analysis'});
+	self.postMessage({action: Actions.Analyse, begin: true, message: 'Beginning analysis'});
 	//check DICOM prefix
 	if(!DICOM.IsValid(dicom)) {
-		self.postMessage({action : Actions.Analyse, error : 'Not a DICOM file'});
+		self.postMessage({action: Actions.Analyse, error: 'Not a DICOM file'});
 		return;
 	}
 	current_tags = DICOM.ParseTags(
@@ -53,18 +53,18 @@ function analyse(dicom) {
 					if(tag_type_definition && tag_type_definition.type !== 'RAW') {
 						tag.rawvalue = tag_type_definition.extract(dicom, tag.data.offset, tag.data.length);
 						tag.value = tag_type_definition.format(tag_type_definition.parse(tag.rawvalue));
-						self.postMessage({action : Actions.Analyse, tag : tag, message : 'Tag found'});
+						self.postMessage({action: Actions.Analyse, tag: tag, message: 'Tag found'});
 					}
 				}
 			}
 		},
-		{analyse_raw : true}
+		{analyse_raw: true}
 	);
-	self.postMessage({action : Actions.Analyse, end : true, result : current_tags, message : 'End of analysis'});
+	self.postMessage({action: Actions.Analyse, end: true, result: current_tags, message: 'End of analysis'});
 }
 
 function clean(dicom, tags) {
-	self.postMessage({action : Actions.Clean, begin : true, message : 'Beginning to clean'});
+	self.postMessage({action: Actions.Clean, begin: true, message: 'Beginning to clean'});
 	const buffer = DICOM.CleanTags(dicom, current_tags, tags);
-	self.postMessage({action : Actions.Clean, end : true, result : buffer, message : 'Tag cleaned'}, [buffer]);
+	self.postMessage({action: Actions.Clean, end: true, result: buffer, message: 'Tag cleaned'}, [buffer]);
 }

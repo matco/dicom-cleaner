@@ -69,7 +69,7 @@ function error_loading() {
 
 function init() {
 	//build analyser worker
-	const analyser = new Analyser({type : 'module'});
+	const analyser = new Analyser({type: 'module'});
 	analyser.addEventListener('message', function(message) {
 		const data = message.data;
 		console.info('Receiving message from analyser', data);
@@ -126,7 +126,7 @@ function init() {
 		current_filename = filename;
 
 		document.querySelector('#tags').empty('tr');
-		analyser.postMessage({action : 'analyse', dicom : dicom}, [dicom]);
+		analyser.postMessage({action: 'analyse', dicom: dicom}, [dicom]);
 
 		document.getElementById('download').setAttribute('title', 'Clean a tag to download an updated version of the DICOM file');
 		document.getElementById('download').setAttribute('disabled', 'disabled');
@@ -234,11 +234,11 @@ function init() {
 	document.getElementById('download').addEventListener(
 		'click',
 		function() {
-			analyser.postMessage({action : 'clean', tags : tags_to_clean});
+			analyser.postMessage({action: 'clean', tags: tags_to_clean});
 		}
 	);
 
-	// eslint-disable-next-line no-unused-vars
+	//eslint-disable-next-line no-unused-vars
 	function test() {
 		const form = document.getElementById('file');
 		const location = window.location;
