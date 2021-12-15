@@ -52,8 +52,6 @@ export default {
 		]
 	},
 	devServer: {
-		contentBase: path.join(__dirname, 'example', 'dist'),
-		port: 9000,
-		host: '0.0.0.0'
+		port: 9000
 	}
 };
