@@ -87,8 +87,7 @@ function init() {
 						//Chrome does not support to set location href
 						if(/Chrome/.test(navigator.userAgent)) {
 							const link = document.createFullElement('a', {href: url, download: current_filename});
-							const event = document.createEvent('MouseEvents');
-							event.initEvent('click', true, true);
+							const event = new MouseEvent('click', {view: window, bubbles: true, cancelable: true});
 							link.dispatchEvent(event);
 						}
 						else {
@@ -245,8 +244,7 @@ function init() {
 		form['url'].value = `${location.protocol}//${location.hostname}:${location.port}/test/sample1.dcm`;
 
 		//submit form
-		const submit = document.createEvent('Event');
-		submit.initEvent('submit', true, true);
+		const submit = new SubmitEvent('submit', {view: window, bubbles: true, cancelable: true});
 		form.dispatchEvent(submit);
 	}
 	//setTimeout(test, 100);
