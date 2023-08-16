@@ -6,11 +6,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 15
-      # do not cache node_modules as recommended here https://github.com/actions/cache/blob/master/examples.md#node---npm
+          cache: 'npm'
       - name: Install dependencies
         run: npm ci
       - name: Run ESLint
