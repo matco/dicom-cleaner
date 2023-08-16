@@ -1,5 +1,5 @@
-import 'js-tools/extension.js';
-import 'js-tools/dom_extension.js';
+import '@matco/basic-tools/extension.js';
+import '@matco/basic-tools/dom_extension.js';
 
 import Dictionaries from '../src/dictionaries.js';
 import Analyser from '../src/workers/analyser.js';
