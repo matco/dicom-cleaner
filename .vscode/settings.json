@@ -1,7 +1,21 @@
 {
+	"css.format.maxPreserveNewLines": 2,
+	"css.format.newlineBetweenRules": false,
+	"css.format.newlineBetweenSelectors": false,
+	"css.format.spaceAroundSelectorSeparator": true,
+	"css.lint.duplicateProperties": "error",
+	"css.lint.emptyRules": "error",
+	"css.lint.zeroUnits": "error",
+	"eslint.lintTask.enable": true,
+	"files.eol": "\n",
 	"files.exclude": {
 		"node_modules": true,
 		"package-lock.json": true,
 		"example/dist": true
-	}
+	},
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+	"javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+	"javascript.format.insertSpaceAfterKeywordsInControlFlowStatements": false,
+	"javascript.preferences.quoteStyle": "single"
 }
