@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="UTF-8"/>
 		<title>DICOM Cleaner</title>
 		<!--css inclusion-->
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"/>
 	</head>
 	<body>
 		<div id="error" class="alert"></div>
@@ -13,14 +13,15 @@
 			<h2>Drag and drop a DICOM file or type the URL of a DICOM file.</h2>
 			<form id="file">
 				<p>
-					<label>URL<input  name="url" type="url" required="required" /></label>
+					<label>URL<input name="url" type="url" required="required"/></label>
 					<button>Submit</button>
 				</p>
 			</form>
 		</div>
 		<content>
 			<h2>
-				File <span id="filename"></span>
+				File
+				<span id="filename"></span>
 				<button id="clear_all">Clear all sensitive tags</button>
 				<button id="download">Download</button>
 			</h2>
@@ -36,13 +37,27 @@
 				</thead>
 				<template id="tag">
 					<tr>
-						<td><slot name="id"></slot></td>
-						<td><slot name="name"></slot></td>
-						<td data-value="true"><slot name="raw-value"></slot></td>
-						<td data-value="true"><slot name="value"></slot></td>
-						<td><slot name="type"></slot></td>
-						<td><slot name="length"></slot></td>
-						<td><slot name="action"></slot></td>
+						<td>
+							<slot name="id"></slot>
+						</td>
+						<td>
+							<slot name="name"></slot>
+						</td>
+						<td data-value="true">
+							<slot name="raw-value"></slot>
+						</td>
+						<td data-value="true">
+							<slot name="value"></slot>
+						</td>
+						<td>
+							<slot name="type"></slot>
+						</td>
+						<td>
+							<slot name="length"></slot>
+						</td>
+						<td>
+							<slot name="action"></slot>
+						</td>
 					</tr>
 				</template>
 			</table>
