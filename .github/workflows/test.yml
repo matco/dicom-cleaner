@@ -1,6 +1,13 @@
 name: Lint and test
 
-on: [push]
+permissions:
+  contents: read
+
+# this will be executed on every push on a branch (hence on every commit), but not when pushing a tag
+on:
+  push:
+    branches:
+      - '*'
 
 jobs:
   test:
@@ -13,7 +20,7 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-      - name: Run ESLint
+      - name: Run linter
         run: npm run lint
       - name: Run tests
         run: npm test
