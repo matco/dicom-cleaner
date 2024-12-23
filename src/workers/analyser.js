@@ -9,31 +9,6 @@ const Actions = {
 let current_dicom;
 let current_tags;
 
-self.addEventListener('message', function(message) {
-	const data = message.data;
-	console.info('Receiving message from application', data);
-
-	const action = data.action;
-	if(action) {
-		switch(action) {
-			case Actions.Analyse:
-				current_dicom = data.dicom;
-				analyse(current_dicom);
-				break;
-			case Actions.Clean: {
-				if(current_dicom) {
-					const tags = data.tags;
-					clean(current_dicom, tags);
-				}
-				else {
-					self.postMessage({error: 'Load a DICOM file first'});
-				}
-				break;
-			}
-		}
-	}
-});
-
 function analyse(dicom) {
 	self.postMessage({action: Actions.Analyse, begin: true, message: 'Beginning analysis'});
 	//check DICOM prefix
@@ -68,3 +43,28 @@ function clean(dicom, tags) {
 	const buffer = DICOM.CleanTags(dicom, current_tags, tags);
 	self.postMessage({action: Actions.Clean, end: true, result: buffer, message: 'Tag cleaned'}, [buffer]);
 }
+
+self.addEventListener('message', function(message) {
+	const data = message.data;
+	console.info('Receiving message from application', data);
+
+	const action = data.action;
+	if(action) {
+		switch(action) {
+			case Actions.Analyse:
+				current_dicom = data.dicom;
+				analyse(current_dicom);
+				break;
+			case Actions.Clean: {
+				if(current_dicom) {
+					const tags = data.tags;
+					clean(current_dicom, tags);
+				}
+				else {
+					self.postMessage({error: 'Load a DICOM file first'});
+				}
+				break;
+			}
+		}
+	}
+});
