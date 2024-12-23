@@ -25,7 +25,7 @@ export default {
 		new CopyPlugin({
 			patterns: [
 				{from: '../test/resources/*.dcm', to: './test/[name].dcm'}
-			],
+			]
 		})
 	],
 	module: {
@@ -40,7 +40,7 @@ export default {
 			{
 				test: /\.png$/,
 				use: [
-					'file-loader',
+					'file-loader'
 				]
 			},
 			{

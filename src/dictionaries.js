@@ -16,7 +16,7 @@ function put_text(buffer, offset, text) {
 //clean describes how to clean a buffer from this kind of data
 //all these functions are used as default for tag types
 const ValueTypes = {
-	'STRING': {
+	STRING: {
 		extract: extract_text,
 		parse: x => x,
 		format: x => x,
@@ -24,22 +24,22 @@ const ValueTypes = {
 			put_text(buffer, dataoffset, ''.padEnd(datalength, ' '));
 		}
 	},
-	'DATE': {
+	DATE: {
 		extract: extract_text,
 		format: x => `${x.getUTCFullYear()}-${(x.getUTCMonth() + 1).toString().padStart(2, '0')}-${x.getUTCDate().toString().padStart(2, '0')}`
 	},
-	'NUMBER': {
+	NUMBER: {
 		parse: x => x,
 		format: x => x.toString()
 	},
-	'RAW': {}
+	RAW: {}
 };
 
 const PeriodUnits = {
-	'D': 'day(s)',
-	'W': 'week(s)',
-	'M': 'month(s)',
-	'Y': 'year(s)'
+	D: 'day(s)',
+	W: 'week(s)',
+	M: 'month(s)',
+	Y: 'year(s)'
 };
 
 function format_byte(integer) {
@@ -59,12 +59,12 @@ const Dictionaries = {
 		}
 	},
 	TagTypes: {
-		'AE': {
+		AE: {
 			type: 'STRING',
 			format: x => x.trim(),
 			max_length: 16
 		},
-		'AS': {
+		AS: {
 			type: 'STRING',
 			format: function(value) {
 				const unit = value.slice(-1);
@@ -73,16 +73,16 @@ const Dictionaries = {
 			},
 			length: 4
 		},
-		'AT': {
+		AT: {
 			type: 'STRING',
 			format: x => x.trim(),
 			length: 4
 		},
-		'CS': {
+		CS: {
 			type: 'STRING',
 			max_length: 16
 		},
-		'DA': {
+		DA: {
 			type: 'DATE',
 			parse: function(value) {
 				const year = parseInt(value.substring(0, 4));
@@ -99,18 +99,18 @@ const Dictionaries = {
 			},
 			length: 8
 		},
-		'DS': {
+		DS: {
 			type: 'STRING',
 			clean: function(buffer, offset, dataoffset, datalength) {
 				put_text(buffer, dataoffset, '0'.padEnd(datalength, '0'));
 			},
 			max_length: 16
 		},
-		'DT': {
+		DT: {
 			type: 'STRING',
 			max_length: 26
 		},
-		'FL': {
+		FL: {
 			type: 'NUMBER',
 			extract: function(buffer, offset, length) {
 				const view = new DataView(buffer, offset, length);
@@ -118,7 +118,7 @@ const Dictionaries = {
 			},
 			length: 8
 		},
-		'FD': {
+		FD: {
 			type: 'NUMBER',
 			extract: function(buffer, offset, length) {
 				const view = new DataView(buffer, offset, length);
@@ -126,53 +126,53 @@ const Dictionaries = {
 			},
 			length: 8
 		},
-		'IS': {
+		IS: {
 			type: 'STRING',
 			max_length: 12
 		},
-		'LO': {
+		LO: {
 			type: 'STRING',
 			clean: function(buffer, offset, dataoffset, datalength) {
 				const text = 'Anonymized'.slice(0, datalength);
 				put_text(buffer, dataoffset, text.padEnd(datalength, ' '));
 			}
 		},
-		'LT': {
+		LT: {
 			type: 'STRING',
 			clean: function(buffer, offset, dataoffset, datalength) {
 				const text = 'Anonymized'.slice(0, datalength);
 				put_text(buffer, dataoffset, text.padEnd(datalength, ' '));
 			}
 		},
-		'OB': {
+		OB: {
 			type: 'RAW'
 		},
-		'OD': {
+		OD: {
 			type: 'RAW'
 		},
-		'OF': {
+		OF: {
 			type: 'RAW'
 		},
-		'OL': {
+		OL: {
 			type: 'RAW'
 		},
-		'OV': {
+		OV: {
 			type: 'RAW'
 		},
-		'OW': {
+		OW: {
 			type: 'RAW'
 		},
-		'PN': {
+		PN: {
 			type: 'STRING',
 			clean: function(buffer, offset, dataoffset, datalength) {
 				const text = 'Anonymized'.slice(0, datalength);
 				put_text(buffer, dataoffset, text.padEnd(datalength, ' '));
 			}
 		},
-		'SH': {
+		SH: {
 			type: 'STRING'
 		},
-		'SL': {
+		SL: {
 			type: 'NUMBER',
 			extract: function(buffer, offset, length) {
 				const view = new DataView(buffer, offset, length);
@@ -180,10 +180,10 @@ const Dictionaries = {
 			},
 			length: 4
 		},
-		'SQ': {
-			type: 'RAW',
+		SQ: {
+			type: 'RAW'
 		},
-		'SS': {
+		SS: {
 			type: 'NUMBER',
 			extract: function(buffer, offset, length) {
 				const view = new DataView(buffer, offset, length);
@@ -191,10 +191,10 @@ const Dictionaries = {
 			},
 			length: 2
 		},
-		'ST': {
+		ST: {
 			type: 'STRING'
 		},
-		'SV': {
+		SV: {
 			type: 'NUMBER',
 			extract: function(buffer, offset, length) {
 				const view = new DataView(buffer, offset, length);
@@ -202,7 +202,7 @@ const Dictionaries = {
 			},
 			length: 8
 		},
-		'TM': {
+		TM: {
 			type: 'STRING',
 			format: function(value) {
 				const hour = value.substring(0, 2).padStart(2, '0');
@@ -226,10 +226,10 @@ const Dictionaries = {
 			},
 			max_length: 16
 		},
-		'UC': {
+		UC: {
 			type: 'STRING'
 		},
-		'UI': {
+		UI: {
 			extract: function(buffer, offset, length) {
 				let characters = new Uint8Array(buffer, offset, length);
 				//last byte may be used as padding
@@ -241,7 +241,7 @@ const Dictionaries = {
 			type: 'STRING',
 			max_length: 64
 		},
-		'UL': {
+		UL: {
 			type: 'NUMBER',
 			extract: function(buffer, offset, length) {
 				const view = new DataView(buffer, offset, length);
@@ -249,23 +249,23 @@ const Dictionaries = {
 			},
 			length: 4
 		},
-		'UN': {
-			type: 'RAW',
+		UN: {
+			type: 'RAW'
 		},
-		'UR': {
+		UR: {
 			type: 'STRING'
 		},
-		'US': {
+		US: {
 			type: 'NUMBER',
 			extract: function(buffer, offset, length) {
 				const view = new DataView(buffer, offset, length);
 				return view.getUint16(0, true);
 			}
 		},
-		'UT': {
+		UT: {
 			type: 'STRING'
 		},
-		'UV': {
+		UV: {
 			type: 'NUMBER',
 			extract: function(buffer, offset, length) {
 				const view = new DataView(buffer, offset, length);
@@ -313,12 +313,12 @@ const Dictionaries = {
 		{
 			id: '(0008,0005)',
 			type: ['CS'],
-			name: 'Specific Character Set',
+			name: 'Specific Character Set'
 		},
 		{
 			id: '(0008,0008)',
 			type: ['CS'],
-			name: 'Image Type',
+			name: 'Image Type'
 		},
 		{
 			id: '(0008,0016)',
@@ -381,7 +381,7 @@ const Dictionaries = {
 		{
 			id: '(0008,0060)',
 			type: ['CS'],
-			name: 'Modality',
+			name: 'Modality'
 		},
 		{
 			id: '(0008,0070)',
@@ -440,12 +440,12 @@ const Dictionaries = {
 		{
 			id: '(0008,1010)',
 			type: ['SH'],
-			name: 'Station Name',
+			name: 'Station Name'
 		},
 		{
 			id: '(0008,1030)',
 			type: ['LO'],
-			name: 'Study Description',
+			name: 'Study Description'
 		},
 		{
 			id: '(0008,1050)',
@@ -467,7 +467,7 @@ const Dictionaries = {
 		{
 			id: '(0008,2144)',
 			type: ['IS'],
-			name: 'Recommended Display Frame Rate',
+			name: 'Recommended Display Frame Rate'
 		},
 		{
 			id: '(0010,0010)',
@@ -530,7 +530,7 @@ const Dictionaries = {
 		{
 			id: '(0018,1020)',
 			type: ['LO'],
-			name: 'Software Version(s)',
+			name: 'Software Version(s)'
 		},
 		{
 			id: '(0018,1063)',
