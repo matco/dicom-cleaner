@@ -1,5 +1,5 @@
 # DICOM cleaner
-DICOM cleaner is a small web application that helps you to remove sensitive information from your DICOM file. In other terms, it allows you to clear some tags (meta-data) of a DICOM file.
+DICOM cleaner is a web application that helps you removing sensitive information from your DICOM file. In other terms, it allows you to clear some tags (meta-data) of a DICOM file.
 
 At the moment, this web application is working only with Chrome with the flag `--enable-experimental-web-platform-features` (to allow the creation of a worker in "module" mode).
 
