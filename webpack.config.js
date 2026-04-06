@@ -24,7 +24,8 @@ export default {
 		}),
 		new CopyPlugin({
 			patterns: [
-				{from: '../test/resources/*.dcm', to: './test/[name].dcm'}
+				{from: '../test/resources/*.dcm', to: './test/[name].dcm'},
+				{from: './favicon.svg', to: './favicon.svg'}
 			]
 		})
 	],
